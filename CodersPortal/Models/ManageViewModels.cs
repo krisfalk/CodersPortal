@@ -12,6 +12,8 @@ namespace CodersPortal.Models
         public string PhoneNumber { get; set; }
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
+        public string HTML { get; set; }
+        public int Profile_Id { get; set; }
     }
 
     public class ManageLoginsViewModel
