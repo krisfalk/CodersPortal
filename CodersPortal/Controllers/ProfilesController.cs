@@ -24,7 +24,8 @@ namespace CodersPortal.Controllers
 
             var model = new IndexViewModel
             {
-                HTML = profile.userHTML
+                HTML = profile.userHTML,
+                Profile_Id = profile.profileId
             };
             ViewBag.YourHTML = profile.userHTML;
             return View(model);
@@ -73,17 +74,42 @@ namespace CodersPortal.Controllers
         // GET: Profiles/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
+            //Profile profile = db.Profiles.Find(id);
+            //if (profile == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            //ViewBag.UserId = new SelectList(db.Users, "Id", "firstName", profile.UserId);
+            //return View(profile);
+
+            ApplicationUser myUser = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+
+            var profile = (from a in db.Profiles where a.profileId == id select a).FirstOrDefault();
+
+            var model = new IndexViewModel
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Profile profile = db.Profiles.Find(id);
-            if (profile == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.UserId = new SelectList(db.Users, "Id", "firstName", profile.UserId);
-            return View(profile);
+                HTML = profile.userHTML,
+                Profile_Id = profile.profileId
+            };
+
+            return View(model);
+        }
+
+        public class currentProfile
+        {
+            public string currentHTML { get; set; }
+            public int currentProfileId { get; set; }
+        }
+        public ActionResult SaveHTML(currentProfile profile)
+        {
+            var myProfile = (from a in db.Profiles where a.profileId == profile.currentProfileId select a).FirstOrDefault();
+            myProfile.userHTML = profile.currentHTML;
+            db.SaveChanges();
+            return View();
         }
 
         // POST: Profiles/Edit/5

@@ -1,43 +1,33 @@
-﻿@model CodersPortal.Models.Profile
+﻿@model CodersPortal.Models.IndexViewModel
 
 @{
     ViewBag.Title = "Edit";
 }
-
+@{var myHTML = Model.HTML.Replace('$', '\n');
+    if (myHTML == null || myHTML == "")
+    {
+        myHTML = "please edit content in your profile";
+    }
+}
 <h2>Edit</h2>
 
+<div style="border:1px black">
+<section contenteditable="true" id="editable">
+        @myHTML    
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Profile</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.profileId)
-
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.userHTML, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.userHTML, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.userHTML, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>
+</section>
     </div>
-}
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+<button onclick="SaveHTML(@Model.Profile_Id)">Save Changes</button>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+
+
+
+            <div>
+                @Html.ActionLink("View Profile", "Index")
+            </div>
+
+            @section Scripts {
+                <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+                <script type="text/javascript" src="~/scripts/loadProfile.js"></script>
+            }
