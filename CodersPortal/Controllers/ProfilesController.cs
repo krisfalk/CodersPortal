@@ -74,18 +74,6 @@ namespace CodersPortal.Controllers
         // GET: Profiles/Edit/5
         public ActionResult Edit(int? id)
         {
-            //if (id == null)
-            //{
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            //}
-            //Profile profile = db.Profiles.Find(id);
-            //if (profile == null)
-            //{
-            //    return HttpNotFound();
-            //}
-            //ViewBag.UserId = new SelectList(db.Users, "Id", "firstName", profile.UserId);
-            //return View(profile);
-
             ApplicationUser myUser = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
 
             var profile = (from a in db.Profiles where a.profileId == id select a).FirstOrDefault();
@@ -95,7 +83,6 @@ namespace CodersPortal.Controllers
                 HTML = profile.userHTML,
                 Profile_Id = profile.profileId
             };
-
             return View(model);
         }
 
@@ -103,15 +90,38 @@ namespace CodersPortal.Controllers
         {
             public string currentHTML { get; set; }
             public int currentProfileId { get; set; }
+            public bool accessLevel { get; set; }
         }
         public ActionResult SaveHTML(currentProfile profile)
         {
             var myProfile = (from a in db.Profiles where a.profileId == profile.currentProfileId select a).FirstOrDefault();
-            myProfile.userHTML = profile.currentHTML;
-            db.SaveChanges();
+            if (!profile.currentHTML.Contains("ajax") || !profile.currentHTML.Contains("$"))
+            {
+                myProfile.userHTML = profile.currentHTML;
+                myProfile.AccessLevel = profile.accessLevel;
+                db.SaveChanges();
+            }
             return View();
         }
 
+        public ActionResult ProfileView(currentProfile profile)
+        {
+            var myProfile = (from a in db.Profiles where a.profileId == profile.currentProfileId select a).FirstOrDefault();
+            return View(myProfile);
+        }
+        public ActionResult ProfilesList()
+        {
+            List<Profile> profiles = new List<Profile>();
+            foreach(var item in db.Profiles)
+            {
+                profiles.Add(item);
+            }
+            var model = new IndexViewModel
+            {
+                profileList = profiles
+            };
+            return View(model);
+        }
         // POST: Profiles/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.

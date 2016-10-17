@@ -158,12 +158,10 @@ namespace CodersPortal.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                    var profile = new Profile { userHTML = defaultHTML, UserId = user.Id };
+                    var profile = new Profile { userHTML = defaultHTML, UserId = user.Id, userEmail = model.Email, AccessLevel = false };
                     db.Profiles.Add(profile);
                     db.SaveChanges();
                     
-
-
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);

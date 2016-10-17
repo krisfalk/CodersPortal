@@ -1,29 +1,43 @@
 ﻿@model CodersPortal.Models.IndexViewModel
 
+<style>
+    section{
+        height: 1000px;
+    }
+    #inputField{
+        border: 1px solid black;
+        border-radius: 3px;
+    }
+    #profileButton{
+        background-color: white;
+        border: 1px orange;
+    }
+
+</style>
 @{
     ViewBag.Title = "Edit";
 }
 @{var myHTML = Model.HTML.Replace('$', '\n');
     if (myHTML == null || myHTML == "")
     {
-        myHTML = "please edit content in your profile";
+        myHTML = "please click edit to add content to this profile";
     }
 }
 <h2>Edit</h2>
 
-<div style="border:1px black">
+<div id="inputField">
 <section contenteditable="true" id="editable">
-        @myHTML    
-
+    @myHTML    
 </section>
     </div>
 
-<button onclick="SaveHTML(@Model.Profile_Id)">Save Changes</button>
+<button onclick="SaveHTML(@Model.Profile_Id, true)">Save and Set as Public</button>
+<button onclick="SaveHTML(@Model.Profile_Id, false)">Save and Set as Private</button>
 
 
 
 
-            <div>
+            <div id="profileButton">
                 @Html.ActionLink("View Profile", "Index")
             </div>
 

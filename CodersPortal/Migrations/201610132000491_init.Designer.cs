@@ -7,13 +7,13 @@ namespace CodersPortal.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class profilemodelcreated : IMigrationMetadata
+    public sealed partial class init : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(profilemodelcreated));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(init));
         
         string IMigrationMetadata.Id
         {
-            get { return "201610122141098_profile model created"; }
+            get { return "201610132000491_init"; }
         }
         
         string IMigrationMetadata.Source

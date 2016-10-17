@@ -14,6 +14,7 @@ namespace CodersPortal.Models
         public bool BrowserRemembered { get; set; }
         public string HTML { get; set; }
         public int Profile_Id { get; set; }
+        public List<Profile> profileList { get; set; }
     }
 
     public class ManageLoginsViewModel

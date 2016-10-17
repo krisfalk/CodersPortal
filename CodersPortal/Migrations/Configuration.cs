@@ -10,7 +10,6 @@ namespace CodersPortal.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "CodersPortal.Models.ApplicationDbContext";
         }
 
         protected override void Seed(CodersPortal.Models.ApplicationDbContext context)

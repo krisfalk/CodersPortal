@@ -1,0 +1,43 @@
+﻿@model CodersPortal.Models.IndexViewModel
+@{ 
+    int index = 0;
+    var myValues = new int[Model.profileList.Count];}
+@{
+    ViewBag.Title = "ProfilesList";
+}
+
+<h2>ProfilesList</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            <strong>Author:</strong>
+        </th>
+        <th>
+            <strong>Profile:</strong>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.profileList)
+{
+    if (item.AccessLevel)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.userEmail)
+            </td>
+            <td>
+                @Html.ActionLink("View Profile", "Details", new { id = item.profileId })
+            </td>
+
+        </tr>
+                        }
+                    }
+
+</table>
+
+@section Scripts {
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/loadProfile.js"></script>
+}

@@ -14,5 +14,7 @@ namespace CodersPortal.Models
         public string UserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
         public string userHTML { get; set; }
+        public bool AccessLevel { get; set; }
+        public string userEmail { get; set; }
     }
 }
