@@ -1,4 +1,10 @@
 ﻿
+$('#newsStories').easyPaginate({
+    paginateElement: 'div',
+    elementsPerPage: 6,
+    effect: 'slide'
+});
+
 function Article(newAuthor, newTitle, newArticle, newImageUrl, newOriginalUrl, newPublishDate) {
     this.author = newAuthor;
     this.title = newTitle;

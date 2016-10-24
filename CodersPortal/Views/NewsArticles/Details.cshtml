@@ -5,10 +5,10 @@
         ViewBag.Title = "Details";
     }
 
-    <h2>Details</h2>
+    <h2>@Model.singleArticle.Title</h2>
 
     <div>
-        <h4>NewsArticle</h4>
+        <h4>Author: @Model.singleArticle.Author</h4>
         <hr />
         <dl class="dl-horizontal">
             <dt>
@@ -60,28 +60,40 @@
 
         </dl>
     </div>
+<br />
+<br />
+<div id="fullCommentSection">
     <div id="commentSection">
-        @foreach(var item in Model.commentList)
+        @foreach (var item in Model.commentList)
         {
             <div id="label">
-            <strong>@item.Name :</strong><br>@item.UserComment
+                <strong>@item.Name :</strong><br>@item.UserComment
             </div>
         }
 
     </div>
-    @*<form method='post'>
-            Comment:<br />
-            <textarea name='comment' id='comment'></textarea><br />
-            <input type="button" value="Post Comment" onclick="SaveComment(@Model.singleArticle.NewsArticleId,'@Model.UserName',@Html.Raw(Json.Encode(Model.commentList)))"/>
-        </form>*@
+    <br />
     <form action="/NewsArticles/SaveComments" method="post">
         <textarea id='UserComment' name='UserComment'></textarea><br />
         <input type="text" name="NewsArticleId" value="@Model.singleArticle.NewsArticleId" hidden>
         <input type="text" name="Name" value="@Model.UserName" hidden>
+        <br />
         <input type="submit" value="SaveComments">
     </form>
-
-
+</div>
+<style>
+    #fullCommentSection{
+        width:50%;
+    }
+    #label{
+        border: 1px solid black;
+        padding: 10px;
+        background-color:#e5e8d5;
+    }
+    #UserComment{
+        width: 100%;
+    }
+</style>
     @section Scripts {
         <script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
         <script type="text/javascript" src="~/Scripts/Articles.js"></script>

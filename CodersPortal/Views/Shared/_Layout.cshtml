@@ -3,11 +3,14 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Coder's Portal</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
+<style>
+    
+</style>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -28,6 +31,7 @@
                     {
                         <li>@Html.ActionLink("View Profile", "Index", "Profiles")</li>
                         <li>@Html.ActionLink("Tech News", "Index", "NewsArticles")</li>
+                        <li>@Html.ActionLink("Shared Files", "DropBox", "Home")</li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")
@@ -44,7 +48,7 @@
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #111;
+    background-color: #e5e8d5;
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
@@ -75,8 +79,15 @@
         border:2px solid #818181;
         align-content: stretch;
         list-style:none;
-        width: 190px;
+        width: 225px;
         border-radius: 3px;
+    }
+    #message{
+        padding: 3px;
+        padding-left: 10px;
+    }
+    #discussion{
+        padding: 10px;
     }
     
     </style>

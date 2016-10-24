@@ -1,5 +1,6 @@
 ﻿@model CodersPortal.Models.IndexViewModel
 
+@Html.ActionLink("Edit Profile", "Edit", new { id = Model.Profile_Id })
 
 <div>
 
@@ -7,7 +8,7 @@
 
 </div>
 
-@Html.ActionLink("Edit", "Edit",  new { id = Model.Profile_Id })
+
 
 @section Scripts {
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>

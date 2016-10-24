@@ -73,15 +73,37 @@
             </div>
         }
     </div>
-
-
+ 
 
 
 
     @section Scripts {
         <script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+        <script type="text/javascript" src="~/Scripts/jquery.easyPaginate.js"></script>
         <script type="text/javascript" src="~/Scripts/Articles.js"></script>
+
     }
+    <style>
+        #easyPaginate {
+            width:300px;
+
+        }
+        .easyPaginateNav {
+            position:center;
+        }
+        .easyPaginateNav a {
+            padding:5px;
+            font-size: larger;
+            color:#225683;
+
+        }
+        .easyPaginateNav a.current {
+            font-weight:bold;
+            text-decoration:underline;
+
+        }
+    </style>
 </body>
 
 @*<h2>Index</h2>
