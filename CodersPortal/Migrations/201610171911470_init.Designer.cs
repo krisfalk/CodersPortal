@@ -13,7 +13,7 @@ namespace CodersPortal.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201610132000491_init"; }
+            get { return "201610171911470_init"; }
         }
         
         string IMigrationMetadata.Source

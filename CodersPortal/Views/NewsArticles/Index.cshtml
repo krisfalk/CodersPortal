@@ -1,0 +1,143 @@
+﻿@model CodersPortal.Models.IndexViewModel
+<style>
+    /*#singleStory {
+        border: 1px black;
+    }*/
+</style>
+
+<body onload="NewsAPI()">
+    @*@{
+            ViewBag.Title = "Index";
+        }*@
+    <h4>Technology News Articles</h4>
+    <hr />
+    
+    <div id="newsStories">
+        @foreach (var item in Model.allDbArticles)
+        {
+            <div id="singleStory" style="border:groove">
+                
+                <dl class="dl-horizontal" id="eachStory">
+                    <dt>
+                        Image:
+                    </dt>
+
+                    <dd>
+                        <a href="@item.ImageUrl"><img src="@item.ImageUrl" height="100" width="100"/></a>
+                    </dd>
+                    <dt>
+                        Author: 
+                    </dt>
+
+                    <dd>
+                        @item.Author
+                    </dd>
+
+                    <dt>
+                        Title: 
+                    </dt>
+
+                    <dd>
+                        @item.Title
+                    </dd>
+
+                    <dt>
+                        Article:
+                    </dt>
+
+                    <dd>
+                        @item.Article
+                    </dd>
+
+                    <dt>
+                        Article URL:
+                    </dt>
+
+                    <dd>
+                        <a href="@item.OriginalUrl">@item.OriginalUrl</a>
+                    </dd>
+
+                    <dt>
+                        Publish Date:
+                    </dt>
+
+                    <dd>
+                        @item.PublishDate
+                    </dd>
+                    <dd>
+                        @Html.ActionLink("Add/View Comments", "Details", new { id = item.NewsArticleId })
+                    </dd>
+
+
+                </dl>
+            </div>
+        }
+    </div>
+
+
+
+
+
+    @section Scripts {
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script type="text/javascript" src="~/Scripts/Articles.js"></script>
+    }
+</body>
+
+@*<h2>Index</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Author)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Article)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OriginalUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PublishDate)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Article)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImageUrl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OriginalUrl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PublishDate)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.NewsArticleId }) |
+                @Html.ActionLink("Details", "Details", new { id=item.NewsArticleId }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.NewsArticleId })
+            </td>
+        </tr>
+    }
+
+    </table>*@

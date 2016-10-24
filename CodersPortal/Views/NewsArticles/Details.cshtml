@@ -1,0 +1,96 @@
+﻿@model CodersPortal.Models.IndexViewModel
+
+@*<body onload="loadComments(@Model.commentList)">*@
+    @{
+        ViewBag.Title = "Details";
+    }
+
+    <h2>Details</h2>
+
+    <div>
+        <h4>NewsArticle</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Image:
+            </dt>
+
+            <dd>
+                <a href="@Model.singleArticle.ImageUrl"><img src="@Model.singleArticle.ImageUrl" height="100" width="100" /></a>
+            </dd>
+            <dt>
+                Author:
+            </dt>
+
+            <dd>
+                @Model.singleArticle.Author
+            </dd>
+
+            <dt>
+                Title:
+            </dt>
+
+            <dd>
+                @Model.singleArticle.Title
+            </dd>
+
+            <dt>
+                Article:
+            </dt>
+
+            <dd>
+                @Model.singleArticle.Article
+            </dd>
+
+            <dt>
+                Article URL:
+            </dt>
+
+            <dd>
+                <a href="@Model.singleArticle.OriginalUrl">@Model.singleArticle.OriginalUrl</a>
+            </dd>
+
+            <dt>
+                Publish Date:
+            </dt>
+
+            <dd>
+                @Model.singleArticle.PublishDate
+            </dd>
+
+        </dl>
+    </div>
+    <div id="commentSection">
+        @foreach(var item in Model.commentList)
+        {
+            <div id="label">
+            <strong>@item.Name :</strong><br>@item.UserComment
+            </div>
+        }
+
+    </div>
+    @*<form method='post'>
+            Comment:<br />
+            <textarea name='comment' id='comment'></textarea><br />
+            <input type="button" value="Post Comment" onclick="SaveComment(@Model.singleArticle.NewsArticleId,'@Model.UserName',@Html.Raw(Json.Encode(Model.commentList)))"/>
+        </form>*@
+    <form action="/NewsArticles/SaveComments" method="post">
+        <textarea id='UserComment' name='UserComment'></textarea><br />
+        <input type="text" name="NewsArticleId" value="@Model.singleArticle.NewsArticleId" hidden>
+        <input type="text" name="Name" value="@Model.UserName" hidden>
+        <input type="submit" value="SaveComments">
+    </form>
+
+
+    @section Scripts {
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script type="text/javascript" src="~/Scripts/Articles.js"></script>
+    }
+@*</body>*@
+
+
+
+@*<p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.NewsArticleId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>*@

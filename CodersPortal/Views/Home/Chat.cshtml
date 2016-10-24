@@ -1,12 +1,20 @@
 ﻿@{
     ViewBag.Title = "Chat";
 }
+<style>
+    .myContainer{
+        width: 250px;
+    }
+    ul {
+        border:1px solid black;
+    }
+</style>
 <h2>Chat</h2>
-<div class="container">
+<div class="myContainer">
     <input type="text" id="message" />
     <input type="button" id="sendmessage" value="Send" />
     <input type="hidden" id="displayname" />
-    <ul id="discussion"></ul>
+    <ul id="discussion" style="list-style-position:outside"></ul>
 </div>
 @section scripts {
     <!--Script references. -->
@@ -27,7 +35,7 @@
                     + '</strong>: ' + htmlEncode(message) + '</li>');
             };
             // Get the user name and store it to prepend to messages.
-            $('#displayname').val(prompt('Enter your name:', ''));
+            $('#displayname').val();
             // Set initial focus to message input box.
             $('#message').focus();
             // Start the connection.

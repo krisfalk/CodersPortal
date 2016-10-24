@@ -33,5 +33,8 @@ namespace CodersPortal.Models
             return new ApplicationDbContext();
         }
         public DbSet<Profile> Profiles { get; set; }
+
+        public System.Data.Entity.DbSet<CodersPortal.Models.NewsArticle> NewsArticles { get; set; }
+        public DbSet<Comment> Comments { get; set; }
     }
 }

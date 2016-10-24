@@ -1,0 +1,121 @@
+﻿
+@{
+    ViewBag.Title = "DropBox";
+}
+
+<h2>Community DropBox</h2>
+<br />
+
+<h5><strong>Click to upload file:</strong></h5>
+
+<dd>
+    <form enctype="multipart/form-data">
+        <input id="files" type="file" name="files[]" multiple />
+        <button type="submit" id="submit" name="submitBtn" onclick="handleFileSelect()">Upload</button>
+    </form>
+</dd>
+<div id="placeholder"><img src="https://d13yacurqjgara.cloudfront.net/users/82092/screenshots/1073359/spinner.gif" height="100" width="100" /></div>
+
+
+<script type="text/javascript" src="https://www.dropbox.com/static/api/dropbox-datastores-1.2-latest.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script type="text/javascript" src="~/Scripts/FileSaver.js"></script>
+    <script>
+        var allOfDropbox = "";
+        var client = new Dropbox.Client({ token: "xL8hmmM377AAAAAAAAAAEgevoM7uu1Zm0qmLSwK58fQ-VriYzy9aIWwfewpiau7z" });
+        client.authenticate({ interactive: false }, function (error) {
+            
+            if (error) {
+                alert('Authentication error: ' + error);
+            } else {
+                readDir(client);
+            }
+        });
+
+        function readDir(client1) {
+            var html = "";
+            client1.readdir('/CommunityDropBox', function (error, entries) {
+                if (error) {
+                    alert('WRONG: ' + error);
+                } else {
+                    html += '<br><strong>Available Files: </strong><br>';
+                    for (var i = 0; i < entries.length; i++) {
+                        html += '<button onclick="downloadFile(\'' + entries[i] + '\')">' + entries[i] + '</button><br>';
+                    }
+                    $('#placeholder').html(html).fadeIn();
+                }
+            });
+        }
+
+        function handleFileSelect(evt) {     //function from Gregory at https://www.dropboxforum.com/hc/en-us/community/posts/207430886-Uploading-saved-local-image-file-using-Javascript-
+            var files = evt.target.files; // FileList object
+
+            // files is a FileList of File objects
+            for (var i = 0, f; f = files[i]; i++) {
+
+                $.ajax({
+                    url: 'https://content.dropboxapi.com/2/files/upload',
+                    type: 'post',
+                    data: f,
+                    processData: false,
+                    contentType: 'application/octet-stream',
+                    headers: {
+                        "Authorization": "Bearer xL8hmmM377AAAAAAAAAAEgevoM7uu1Zm0qmLSwK58fQ-VriYzy9aIWwfewpiau7z",
+                        "Dropbox-API-Arg": '{"path": "/CommunityDropBox/' + f.name + '","mode": "add"}'
+                    },
+                    success: function (data) {
+                        console.log(data);
+                    },
+                    error: function (data) {
+                        console.log(data);
+                    }
+                });
+
+            }
+
+        }
+
+        document.getElementById('files').addEventListener('change', handleFileSelect, false);
+
+
+        function downloadFile(filename) {   //this works!
+            var url = "https://content.dropboxapi.com/2/files/download";
+            var headers = {
+                'authorization': 'Bearer xL8hmmM377AAAAAAAAAAEgevoM7uu1Zm0qmLSwK58fQ-VriYzy9aIWwfewpiau7z',
+                'Dropbox-API-Arg': '{"path": "/CommunityDropBox/' + filename + '"}'
+            };
+            var args = {
+                url: url,
+                headers: headers,
+                type: 'GET',
+                success: function (data) {
+                    //var metadata = $.parseJSON(request.getResponseHeader('x-dropbox-metadata'));   //bawejakunal at http://stackoverflow.com/questions/31490074/download-file-via-dropbox-api-from-browser
+                    console.log(data);
+                    var fileExt = filename.split('.').pop();
+                    if (fileExt == 'txt') {
+                        var file = new Blob([data], { type: 'text/plain;charset=utf-8' });
+                    }
+                    else if (fileExt == 'jpg')
+                    {
+                        var file = new Blob([data], { type: 'image/png' });
+                    }
+                    else if (fileExt == 'pdf') {
+                        var file = new Blob([data], { type: 'application/pdf' });
+                    }
+                    else if (fileExt == 'exe') {
+                        var file = new Blob([data], { type: 'application/x-msdownload' });
+                    }
+                    saveAs(file, filename);
+                },
+                error: function (e) {
+                    console.log(e);
+                }
+            };
+            $.ajax(args);
+        }
+
+
+
+    </script>
+        @*<script type="text/javascript" src="~/Scripts/dropbox.js"></script>*@
+       

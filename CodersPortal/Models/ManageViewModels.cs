@@ -15,6 +15,10 @@ namespace CodersPortal.Models
         public string HTML { get; set; }
         public int Profile_Id { get; set; }
         public List<Profile> profileList { get; set; }
+        public List<NewsArticle> allDbArticles { get; set; }
+        public List<Comment> commentList { get; set; }
+        public NewsArticle singleArticle { get; set; }
+        public string UserName { get; set; }
     }
 
     public class ManageLoginsViewModel

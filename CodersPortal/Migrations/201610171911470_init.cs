@@ -8,6 +8,20 @@ namespace CodersPortal.Migrations
         public override void Up()
         {
             CreateTable(
+                "dbo.NewsArticles",
+                c => new
+                    {
+                        NewsArticleId = c.Int(nullable: false, identity: true),
+                        Author = c.String(),
+                        Title = c.String(),
+                        Article = c.String(),
+                        ImageUrl = c.String(),
+                        OriginalUrl = c.String(),
+                        PublishDate = c.DateTime(nullable: false),
+                    })
+                .PrimaryKey(t => t.NewsArticleId);
+            
+            CreateTable(
                 "dbo.Profiles",
                 c => new
                     {
@@ -113,6 +127,7 @@ namespace CodersPortal.Migrations
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.Profiles");
+            DropTable("dbo.NewsArticles");
         }
     }
 }
