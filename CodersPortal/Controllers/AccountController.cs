@@ -152,7 +152,7 @@ namespace CodersPortal.Controllers
         {
             if (ModelState.IsValid)
             {
-                string defaultHTML = "<style>STYLE HERE</style><div><h3>" + model.firstName + " " + model.lastName + "'s Profile Page</h3></div><div>EDIT HERE</div>";
+                string defaultHTML = "<style>STYLE HERE</style><div><h3>" + model.firstName + " " + model.lastName + "'s Profile Page</h3></div><div>ADD CONTENT HERE</div>";
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, firstName = model.firstName, lastName = model.lastName };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)

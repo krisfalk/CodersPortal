@@ -1,14 +1,17 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-    background-image: url(http://coolblackppt.com/wp-content/uploads/2014/01/Seamless-light-background-texture-tile-able-website-backgrounds.jpg);
+    background-image: url(http://turbo.designwoop.com/uploads/2012/03/19_free_subtle_textures_3px_tile.jpg);
     /*background-size: cover;*/
+    color: #97a9ab;
+    
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    color: #97a9ab;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -25,11 +28,11 @@ textarea {
     max-width: 280px;
 }
 div {
-    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-family: sans-serif;
 }
 h1 {
-    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-family: sans-serif;
 }
 h2 {
-    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-family: sans-serif;
 }

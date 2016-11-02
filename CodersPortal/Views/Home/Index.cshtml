@@ -2,43 +2,47 @@
     ViewBag.Title = "Home Page";
 }
 <style>
-    img{
+    img {
         filter: blur(1px) grayscale(70%);
     }
-    img:hover{
-        filter: blur(0px);
-    }
-    
+
+        img:hover {
+            filter: blur(0px);
+        }
 </style>
-<div class="jumbotron">
+<div class="jumbotron" style="color:black">
     <center>
         <h1>Coder's Portal</h1>
         <br />
-        <p class="lead">Welcome to a coder community where you can build your own custom profile with HTML and javascript.</p>
-        <p class="lead">Register an account to be part of our community and start connecting with other coders now.</p>
-        <p class="lead">Share your profile, ideas, files and thoughts with other coding enthusiasts.</p>
+        @*@if (!Request.IsAuthenticated)*@
+        
+            <p class="lead">Welcome to a coder community where you can build your own custom profile with HTML and javascript.</p>
+            <p class="lead">Register an account to be part of our community and start connecting with other coders now.</p>
+            <p class="lead">Share your profile, ideas, files and thoughts with other coding enthusiasts.</p>
+            <p class="lead">Please read site rules.</p>
+        
     </center>
 </div>
 
 @if (Request.IsAuthenticated)
 {
-<div class="row">
-    <div class="col-md-4">
-        <h2>View Profile:</h2>
-        <a href="http://localhost:24380/Profiles"><img src="http://geoawesomeness.com/wp-content/uploads/2014/08/Programming-Coding-Geoawesomeness.jpg" height="200" width="350" style="padding-bottom:5px;" /></a>
-        <p><a class="btn btn-default" href="http://localhost:24380/Profiles">Profile &raquo;</a></p>
+    <div class="row">
+        <div class="col-md-4">
+            <h2>View Profile:</h2>
+            <a href="http://localhost:24380/Profiles"><img src="http://geoawesomeness.com/wp-content/uploads/2014/08/Programming-Coding-Geoawesomeness.jpg" height="200" width="350" style="padding-bottom:5px;" /></a>
+            <p><a class="btn btn-default" href="http://localhost:24380/Profiles">Profile &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Tech News:</h2>
+            <a href="http://localhost:24380/NewsArticles"><img src="http://technews.turkiyedenetwork.com/uploads/images/tech-news.jpg" height="200" width="350" style="padding-bottom:5px;" /></a>
+            <p><a class="btn btn-default" href="http://localhost:24380/NewsArticles">Articles &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Community Dropbox</h2>
+            <a href="http://localhost:24380/Home/DropBox"><img src="https://cfl.dropboxstatic.com/static/images/brand/glyph@2x-vflJ1vxbq.png" height="200" width="350" style="padding-bottom:5px;" /></a>
+            <p><a class="btn btn-default" href="http://localhost:24380/Home/DropBox">Dropbox &raquo;</a></p>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Tech News:</h2>
-        <a href="http://localhost:24380/NewsArticles"><img src="http://technews.turkiyedenetwork.com/uploads/images/tech-news.jpg" height="200" width="350" style="padding-bottom:5px;" /></a>
-        <p><a class="btn btn-default" href="http://localhost:24380/NewsArticles">Articles &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Community Dropbox</h2>
-        <a href="http://localhost:24380/Home/DropBox"><img src="https://cfl.dropboxstatic.com/static/images/brand/glyph@2x-vflJ1vxbq.png" height="200" width="350" style="padding-bottom:5px;" /></a>
-        <p><a class="btn btn-default" href="http://localhost:24380/Home/DropBox">Dropbox &raquo;</a></p>
-    </div>
-</div>
 }
 else
 {
@@ -51,7 +55,7 @@ else
         <div class="col-md-6">
             <h2>View Public Profiles</h2>
             <a href="http://localhost:24380/Profiles/ProfilesList"><img src="https://media.licdn.com/mpr/mpr/jc/AAEAAQAAAAAAAARRAAAAJDI4MDg3ZGE4LTUyN2MtNDNhNS04YjcxLWMxZjY0ZTc1ZThlZA.jpg" height="200" width="350" style="padding-bottom:5px;" /></a>
-            <p><a class="btn btn-default" href="http://localhost:24380/Profiles/ProfilesList">Proiles &raquo;</a></p>
+            <p><a class="btn btn-default" href="http://localhost:24380/Profiles/ProfilesList">Profiles &raquo;</a></p>
         </div>
     </center>
-            }
+}

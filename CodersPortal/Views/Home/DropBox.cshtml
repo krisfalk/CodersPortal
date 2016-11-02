@@ -21,27 +21,28 @@
         color:aqua;
     }
     #files{
-    background-color: #4CAF50;
+    background-color:  rgba(70, 184, 218, 0.49);
     border: none;
     border-radius: 3px;
     color: white;
-    padding: 15px 32px;
+    padding: 15px 30px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
-    width: auto;
+    width: 800px;
     }
     #files:hover{
         background-color: #0026ff;
         color:aqua;
     }
     td{
-        background-color:#f2f7d9;
+        background-color: rgba(70, 184, 218, 0.49);
         padding-left: 20px;
         padding-right: 20px;
+        color: black;
     }
 </style>
 <center>
@@ -52,7 +53,7 @@
 
     <dd>
         <form enctype="multipart/form-data">
-            <input id="files" type="file" name="files[]" multiple />
+            <input id="files" type="file" name="files[]" multiple /><br />
             <button type="submit" id="submit" name="submitBtn" onclick="handleFileSelect()">Upload</button>
         </form>
     </dd>
